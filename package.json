@@ -2,18 +2,42 @@
   "name": "aws-cognito-auth",
   "private": true,
   "scripts": {
-    "build": "turbo build",
+    "preinstall": "npx only-allow pnpm",
+    "ui:add": "pnpm --filter @repo/ui ui:add",
     "dev": "turbo dev",
+    "dev:api": "turbo run dev --filter=@repo/api",
+    "dev:dashboard": "turbo run dev --filter=@repo/dashboard",
+    "build": "turbo build",
+    "build:api": "turbo run build --filter=@repo/api",
+    "build:dashboard": "turbo run build --filter=@repo/dashboard",
+    "start": "turbo run start",
+    "start:api": "turbo run start --filter=@repo/api",
+    "start:dashboard": "turbo run start --filter=@repo/dashboard",
+    "docker-compose-up": "turbo run docker-compose-up",
+    "docker-compose-down": "turbo run docker-compose-down",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "lint:staged": "turbo lint:staged",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
+    "clean": "turbo clean",
+    "prepare": "husky",
+    "commitlint": "commitlint --edit"
   },
   "devDependencies": {
-    "prettier": "^3.2.5",
+    "@commitlint/cli": "^19.5.0",
+    "@commitlint/config-conventional": "^19.5.0",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "prettier": "^3.3.3",
+    "prettier-eslint-cli": "^8.0.1",
+    "prettier-plugin-tailwindcss": "^0.6.8",
     "turbo": "^2.2.3",
-    "typescript": "^5.4.5"
+    "typescript": "^5"
   },
   "packageManager": "pnpm@8.15.6",
   "engines": {
     "node": ">=18"
+  },
+  "dependencies": {
+    "@turbo/gen": "^2.2.3"
   }
 }
